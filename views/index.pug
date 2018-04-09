@@ -1,0 +1,5 @@
+include layout
+
+block body
+	h1= `faster.js Example${optimized ? ' (Optimized)' : ''}`
+	script(src=`bundle-${(optimized ? 'optimized' : 'original')}.js`)
