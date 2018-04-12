@@ -4,7 +4,7 @@ import Vector from './Vector';
 export default class Particle {
 	constructor(x, y) {
 		this.pos = new Vector(x, y);
-		this.vel = Vector.random().times(50 + nextRand() * 50);
+		this.vel = Vector.random().times(25 + nextRand() * 25);
 		this.radius = 1 + 2 * nextRand();
 		this.r = Math.round(255 * nextRand());
 		this.g = Math.round(255 * nextRand());

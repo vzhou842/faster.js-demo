@@ -1,9 +1,11 @@
 import nextRand from './Random';
 import Particle from './Particle';
 
-// Canvas variables
+// Setup canvas and resize it
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = 0.8 * window.innerHeight;
 const width = canvas.width;
 const height = canvas.height;
 
@@ -49,7 +51,7 @@ function render() {
 	context.strokeRect(3, 3, width - 6, height - 6);
 
 	// Render the update time
-	context.fillStyle = 'black';
+	context.fillStyle = context.strokeStyle;
 	context.fillRect(0, 0, 88, 44);
 	context.fillStyle = 'white';
 	context.font = '13px Helvetica';

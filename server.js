@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
 	res.render('index', { optimized });
 });
 
+app.get('/compare', (req, res) => {
+	res.render('compare');
+});
+
 app.use((req, res, next) => {
 	res.render('404');
 });

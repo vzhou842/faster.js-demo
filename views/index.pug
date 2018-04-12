@@ -2,10 +2,14 @@ include layout
 
 block head
 	script(src=`bundle-${(optimized ? 'optimized' : 'original')}.js` async)
+	style.
+		body {
+			margin: 0;
+		}
 
 block body
 	title= `faster.js Demo${optimized ? ' (Optimized)' : ''}`
-	canvas(width=800 height=600)#canvas
+	canvas#canvas
 	p#first-100-label
 	p#first-500-label
 	p#first-1000-label
