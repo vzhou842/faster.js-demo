@@ -8,7 +8,8 @@ block head
 block body
 	title= `faster.js Demo${optimized ? ' (Optimized)' : ''}`
 	center
-		h1= optimized ? 'With faster.js' : 'Without faster.js'
+		h1.
+			#{optimized ? 'With' : 'Without'} #[a(href='https://github.com/vzhou842/faster.js' target='_blank') faster.js]
 		div.relative
 			canvas#canvas
 			div.stats-container
