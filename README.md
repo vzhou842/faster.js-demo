@@ -1,6 +1,6 @@
-# faster.js Example
+# faster.js Demo
 
-This project is meant to provide an example usage of the [faster.js](https://github.com/vzhou842/faster.js) Babel plugin.
+This project is meant to provide a demo of the [faster.js](https://github.com/vzhou842/faster.js) Babel plugin.
 
 To run this project:
 

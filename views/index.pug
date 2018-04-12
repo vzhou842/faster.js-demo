@@ -4,7 +4,7 @@ block head
 	script(src=`bundle-${(optimized ? 'optimized' : 'original')}.js` async)
 
 block body
-	title= `faster.js Example${optimized ? ' (Optimized)' : ''}`
+	title= `faster.js Demo${optimized ? ' (Optimized)' : ''}`
 	canvas(width=800 height=600)#canvas
 	p#first-100-label
 	p#first-500-label

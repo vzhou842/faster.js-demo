@@ -1,7 +1,7 @@
 {
-	"name": "fasterjs-example",
+	"name": "fasterjs-demo",
 	"version": "0.1.0",
-	"description": "An example usage of the faster.js Babel plugin.",
+	"description": "A demo of the faster.js Babel plugin.",
 	"main": "server.js",
 	"scripts": {
 		"build-original": "webpack-cli --config webpack-original.config.js",
