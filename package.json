@@ -9,6 +9,7 @@
 		"watch-original": "webpack-cli --config webpack-original.config.js --watch",
 		"watch-optimized": "webpack-cli --config webpack-optimized.config.js --watch",
 		"build": "npm run build-original && npm run build-optimized",
+		"postinstall": "npm run build",
 		"start": "node server.js"
 	},
 	"author": "Victor Zhou",
