@@ -5,6 +5,7 @@ const app = express();
 app.set('view engine', 'pug');
 
 app.use(express.static('dist'));
+app.use(express.static('static'));
 
 app.get('/', (req, res) => {
 	const optimized = !!req.query.optimized;

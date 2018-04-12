@@ -17,6 +17,9 @@ for (let i = 0; i < NUM_PARTICLES; i++) {
 }
 
 // Misc variables
+const liveUpdateLabel = document.getElementById('live-update-label');
+const statsRenderLabel = document.getElementById('stats-render');
+const statsAvgTimeLabel = document.getElementById('stats-avg-time');
 let lastUpdateTime;
 let updateCount = 0;
 let avgUpdateTime = 0;
@@ -49,16 +52,6 @@ function render() {
 	context.strokeStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
 	context.lineWidth = 6;
 	context.strokeRect(3, 3, width - 6, height - 6);
-
-	// Render the update time
-	context.fillStyle = context.strokeStyle;
-	context.fillRect(0, 0, 88, 44);
-	context.fillStyle = 'white';
-	context.font = '13px Helvetica';
-	context.textBaseline = 'top';
-	context.textAlign = 'left';
-	context.fillText(`Render ${updateCount}`, 5, 5);
-	context.fillText(`${avgUpdateTime.toFixed(2)} ms`, 5, 24);
 }
 
 // Updates the simulation state
@@ -87,14 +80,21 @@ function update() {
 	const updateTime = performance.now() - start;
 	avgUpdateTime = (avgUpdateTime * updateCount + updateTime) / (updateCount + 1);
 
-	updateCount++;
-
-	// Record statistics if needed
-	if (updateCount === 100 || updateCount === 500 || updateCount === 1000) {
-		const t = Math.round(avgUpdateTime * updateCount);
-		const label = document.getElementById(`first-${updateCount}-label`);
-		label.textContent = `${updateCount} renders: ${t} ms (${avgUpdateTime.toFixed(1)} ms/render)`;
+	// Record statistics
+	statsRenderLabel.textContent = `Render #${updateCount}`;
+	if (updateCount % 10 === 0) {
+		statsAvgTimeLabel.textContent = `${avgUpdateTime.toFixed(2)} ms/render`;
 	}
+	if (updateCount === 20 || updateCount === 50 || updateCount === 100 || updateCount % 200 === 0) {
+		const t = Math.round(avgUpdateTime * updateCount);
+		if (updateCount < 1000) {
+			liveUpdateLabel.textContent = `First ${updateCount} renders: ${t} ms (${avgUpdateTime.toFixed(1)} ms/render)`;
+		} else {
+			liveUpdateLabel.textContent = `First ${updateCount} renders: ${(t/1000).toFixed(2)} s (${avgUpdateTime.toFixed(1)} ms/render)`;
+		}
+	}
+
+	updateCount++;
 
 	requestAnimationFrame(update);
 }
