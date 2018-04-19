@@ -15,7 +15,7 @@ module.exports = {
 				loader: 'babel-loader',
 				options: {
 					presets: ['@babel/preset-env'],
-					plugins: ['module:faster.js']
+					plugins: [require('faster.js')]
 				}
 			}
 		}]
