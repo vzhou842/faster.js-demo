@@ -11,7 +11,7 @@ const height = canvas.height;
 
 // Initialize particles
 let particles = [];
-const NUM_PARTICLES = 5000;
+const NUM_PARTICLES = 4000;
 for (let i = 0; i < NUM_PARTICLES; i++) {
 	addParticle();
 }
@@ -39,7 +39,7 @@ function render() {
 	particles.forEach(p => p.render(context));
 
 	// Choose the border color based on the average of all particle colors
-	let color = particles.reduce((acc, p) => {
+	let color = particles.reduceRight((acc, p) => {
 		acc[0] += p.r;
 		acc[1] += p.g;
 		acc[2] += p.b;
@@ -78,9 +78,7 @@ function update() {
 	render();
 
 	// Throw away the first render because weird stuff can happen.
-	if (updateCount < 0) {
-		updateCount = 0;
-	} else {
+	if (updateCount >= 0) {
 		const updateTime = performance.now() - start;
 		avgUpdateTime = (avgUpdateTime * updateCount + updateTime) / (updateCount + 1);
 	}
