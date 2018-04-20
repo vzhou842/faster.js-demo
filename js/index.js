@@ -21,7 +21,7 @@ const liveUpdateLabel = document.getElementById('live-update-label');
 const statsRenderLabel = document.getElementById('stats-render');
 const statsAvgTimeLabel = document.getElementById('stats-avg-time');
 let lastUpdateTime;
-let updateCount = 0;
+let updateCount = -1;
 let avgUpdateTime = 0;
 
 // Creates a new particle at a random location
@@ -77,8 +77,13 @@ function update() {
 
 	render();
 
-	const updateTime = performance.now() - start;
-	avgUpdateTime = (avgUpdateTime * updateCount + updateTime) / (updateCount + 1);
+	// Throw away the first render because weird stuff can happen.
+	if (updateCount < 0) {
+		updateCount = 0;
+	} else {
+		const updateTime = performance.now() - start;
+		avgUpdateTime = (avgUpdateTime * updateCount + updateTime) / (updateCount + 1);
+	}
 
 	// Record statistics
 	statsRenderLabel.textContent = `Render #${updateCount}`;
